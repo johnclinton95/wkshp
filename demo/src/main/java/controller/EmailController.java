@@ -1,6 +1,7 @@
 package controller;
 
 import service.EmailSenderService;
+import controller.ressource.EmailMessage;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmailController {
 
-    private final EmailSenderServiceenderService emailSenderService;
+    private final EmailSenderService emailSenderService;
 
     public EmailController(EmailSenderService emailSenderService) {
         this.emailSenderService = emailSenderService;
@@ -19,7 +20,7 @@ public class EmailController {
 
     @PostMapping("/send-email")
     public ResponseEntity sendEmail(@RequestBody EmailMessage emailMessage) {
-        this.emailSenderServiceenderService.sendEmail(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
+        this.emailSenderService.sendEmail(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
         return ResponseEntity.ok("Success");
     }
 }
